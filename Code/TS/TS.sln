@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TS", "TS\TS.csproj", "{0A2D05D3-458A-4208-8E51-34B416E5EC64}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TS.Entities", "TS.Entities\TS.Entities.csproj", "{CBBD06BA-3DF4-49D9-BACE-37361D159535}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TS.DataAccess", "TS.DataAccess\TS.DataAccess.csproj", "{38BBFED3-013D-43CE-863A-F2A67DF51B7E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0A2D05D3-458A-4208-8E51-34B416E5EC64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A2D05D3-458A-4208-8E51-34B416E5EC64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A2D05D3-458A-4208-8E51-34B416E5EC64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A2D05D3-458A-4208-8E51-34B416E5EC64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBBD06BA-3DF4-49D9-BACE-37361D159535}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBBD06BA-3DF4-49D9-BACE-37361D159535}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBBD06BA-3DF4-49D9-BACE-37361D159535}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBBD06BA-3DF4-49D9-BACE-37361D159535}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38BBFED3-013D-43CE-863A-F2A67DF51B7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38BBFED3-013D-43CE-863A-F2A67DF51B7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38BBFED3-013D-43CE-863A-F2A67DF51B7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38BBFED3-013D-43CE-863A-F2A67DF51B7E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Data.6.0.1304.0\lib\NET45
+		SolutionGuid = {0D112A50-AA96-44E3-A605-EB5D219D4830}
+	EndGlobalSection
+EndGlobal
