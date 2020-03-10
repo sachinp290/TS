@@ -5,17 +5,17 @@ using System.Data.SqlClient;
 
 namespace TS.DataAccess
 {
-    public class EnterpriseDAL
+    public class EnterpriseDAO
     {
         private static readonly Database database;
-        static EnterpriseDAL()
+        static EnterpriseDAO()
         {
             database = DatabaseFactory.CreateDatabase();
         }
 
-        public List<T> GetDatasetfromStoreProcedure<T>(string query, CommandType type)
+        public DataTable GetDataTablefromStoreProcedure<T>(string query, CommandType type)
         {
-            List<T> result = new List<T>();
+            DataTable result = new DataTable();
             using (var con = database.CreateConnection())
             {
                 using (var cmd = con.CreateCommand())
@@ -25,10 +25,7 @@ namespace TS.DataAccess
 
                     using (SqlDataReader dr = cmd.ExecuteReader() as SqlDataReader)
                     {
-                        while (dr.Read())
-                        {
-                            
-                        }
+                        result.Load(dr);
                     }
                 }
             }
