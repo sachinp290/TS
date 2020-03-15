@@ -40,8 +40,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ISubjectService.cs" />
+    <Compile Include="ITopicService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SubjectService.cs" />
+    <Compile Include="TopicService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TS.DataAccess\TS.DataAccess.csproj">

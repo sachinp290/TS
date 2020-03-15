@@ -7,25 +7,25 @@ using TS.Entities;
 
 namespace TS.DataAccess
 {
-    public class SubjectRepository : IRepository<Subject>, ISubjectRepository
+   public class TopicRepository:ITopicRepository, IRepository<Topic>
     {
-        public Subject Get(int id)
+        public Topic Get(int id)
         {
             throw new NotImplementedException();
         }
 
-        public List<Subject> Get()
+        public List<Topic> Get()
         {
-            var dt = EnterpriseDAO.Get("GetSubjects", System.Data.CommandType.StoredProcedure);
-            return DataHelper.DataTableToStudents(dt);
+            var dt = EnterpriseDAO.Get("GetTopics", System.Data.CommandType.StoredProcedure);
+            return DataHelper.DataTableToTopics(dt);
         }
 
-        public int Add(Subject item)
+        public int Add(Topic item)
         {
             throw new NotImplementedException();
         }
 
-        public void Edit(Subject item)
+        public void Edit(Topic item)
         {
             throw new NotImplementedException();
         }

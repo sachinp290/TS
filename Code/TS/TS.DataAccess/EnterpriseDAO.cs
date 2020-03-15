@@ -1,5 +1,6 @@
 ﻿using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Data;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -17,19 +18,26 @@ namespace TS.DataAccess
             database = DatabaseFactory.CreateDatabase();
         }
 
-        public static List<Subject> GetFromStoreProcedure(string storeProcedureName)
+        public static DataTable Get(string query, CommandType commandtype, params IDataParameter[] sqlParams)
         {
-            List<Subject> result = new List<Subject>();
+            DataTable result = new DataTable();
             using (var con = database.CreateConnection())
             {
                 using (var cmd = con.CreateCommand())
                 {
-                    cmd.CommandText = storeProcedureName;
+                    if (sqlParams != null)
+                    {
+                        foreach (IDataParameter para in sqlParams)
+                        {
+                            cmd.Parameters.Add(para);
+                        }
+                    }
+                    cmd.CommandText = query;
+                    cmd.CommandType = commandtype;
                     con.Open();
                     using (SqlDataReader dr = cmd.ExecuteReader() as SqlDataReader)
                     {
-                        while (dr.Read())
-                            result.Add(new Subject(dr));
+                            result.Load(dr);
                     }
                     con.Close();
                 }
@@ -37,6 +45,6 @@ namespace TS.DataAccess
             return result;
         }
 
-
+        
     }
 }

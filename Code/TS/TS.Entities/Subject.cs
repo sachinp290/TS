@@ -2,7 +2,11 @@
 using System.Data;
 namespace TS.Entities
 {
-    public class Subject
+    public class BaseEntity
+    {
+
+    }
+    public class Subject : BaseEntity
     {
         public Subject() { }
         public Subject(IDataReader reader)
