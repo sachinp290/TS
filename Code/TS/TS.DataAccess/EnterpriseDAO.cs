@@ -1,4 +1,5 @@
-﻿using Microsoft.Practices.EnterpriseLibrary.Data;
+﻿using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Data;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -11,6 +12,8 @@ namespace TS.DataAccess
         private static readonly Database database;
         static EnterpriseDAO()
         {
+            DatabaseProviderFactory factory = new DatabaseProviderFactory(new SystemConfigurationSource(false).GetSection);
+            DatabaseFactory.SetDatabaseProviderFactory(factory, false);
             database = DatabaseFactory.CreateDatabase();
         }
 
@@ -22,12 +25,13 @@ namespace TS.DataAccess
                 using (var cmd = con.CreateCommand())
                 {
                     cmd.CommandText = storeProcedureName;
-
+                    con.Open();
                     using (SqlDataReader dr = cmd.ExecuteReader() as SqlDataReader)
                     {
-                        result.Add(new Subject(dr));
-
+                        while (dr.Read())
+                            result.Add(new Subject(dr));
                     }
+                    con.Close();
                 }
             }
             return result;

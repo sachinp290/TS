@@ -16,7 +16,7 @@ namespace TS.DataAccess
 
         public List<Subject> Get()
         {
-            return EnterpriseDAO.GetFromStoreProcedure("GetStudents");
+            return EnterpriseDAO.GetFromStoreProcedure("GetSubjects");
         }
 
         public int Add(Subject item)
