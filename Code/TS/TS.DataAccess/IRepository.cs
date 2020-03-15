@@ -9,5 +9,6 @@ namespace TS.DataAccess
         int Add(T item);
         void Edit(T item);
         void Delete(int id);
+        void Update(T item);
     }
 }

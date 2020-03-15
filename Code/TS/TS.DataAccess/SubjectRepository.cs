@@ -38,5 +38,11 @@ namespace TS.DataAccess
         {
             throw new NotImplementedException();
         }
+
+
+        public void Update(Subject item)
+        {
+            EnterpriseDAO.Update("UpdateSubject", System.Data.CommandType.StoredProcedure, DataHelper.GetParamsForSubject(item));
+        }
     }
 }

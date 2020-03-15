@@ -18,7 +18,17 @@ namespace TS.DataAccess
             database = DatabaseFactory.CreateDatabase();
         }
 
-        public static DataTable Get(string query, CommandType commandtype, List<SqlParameter> sqlParams)
+        public static DataTable Get(string query, CommandType commandtype, List<SqlParameter> pars)
+        {
+           return Execute(query, commandtype, pars);
+        }
+
+        internal static void Update(string query, CommandType commandType, List<SqlParameter> pars)
+        {
+            Execute(query, commandType, pars);
+        }
+
+        public static DataTable Execute(string query, CommandType commandtype, List<SqlParameter> sqlParams)
         {
             DataTable result = new DataTable();
             using (var con = database.CreateConnection())
@@ -37,14 +47,12 @@ namespace TS.DataAccess
                     con.Open();
                     using (SqlDataReader dr = cmd.ExecuteReader() as SqlDataReader)
                     {
-                            result.Load(dr);
+                        result.Load(dr);
                     }
                     con.Close();
                 }
             }
             return result;
         }
-
-        
     }
 }

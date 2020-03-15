@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TS.DataAccess;
+using TS.Entities;
 
 namespace TS.Service
 {
@@ -22,6 +23,11 @@ namespace TS.Service
         public Entities.Subject GetSubject(int id)
         {
             return repo.Get(id);
+        }
+
+        public void UpdateSubject(Subject item)
+        {
+            repo.Update(item);
         }
     }
 }

@@ -19,14 +19,17 @@ namespace TS.API.Controllers
         }
 
         // GET: api/Topic/5
-        public string Get(int id)
+        public Topic Get(int id)
         {
-            return "value";
+            ITopicService service = new TopicService();
+            return service.GetTopic(id);
         }
 
         // POST: api/Topic
-        public void Post([FromBody]string value)
+        public void Post([FromBody]Topic value)
         {
+            ITopicService service = new TopicService();
+            service.UpdateTopic(value);
         }
 
         // PUT: api/Topic/5

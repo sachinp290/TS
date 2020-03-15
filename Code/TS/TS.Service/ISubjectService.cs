@@ -11,5 +11,6 @@ namespace TS.Service
     {
         List<Subject> GetSubjects();
         Subject GetSubject(int id);
+        void UpdateSubject(Subject value);
     }
 }

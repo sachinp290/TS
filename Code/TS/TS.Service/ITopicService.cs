@@ -10,5 +10,7 @@ namespace TS.Service
    public interface ITopicService
     {
         List<Topic> GetTopics();
+        Topic GetTopic(int id);
+        void UpdateTopic(Topic item);
     }
 }

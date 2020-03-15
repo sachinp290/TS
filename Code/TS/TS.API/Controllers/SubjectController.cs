@@ -26,9 +26,12 @@ namespace TS.API.Controllers
         }
 
         // POST: api/Subject
-        public void Post([FromBody]string value)
+        public void Post([FromBody]Subject value)
         {
+            ISubjectService service = new SubjectService();
+            service.UpdateSubject(value);
         }
+
 
         // PUT: api/Subject/5
         public void Put(int id, [FromBody]string value)

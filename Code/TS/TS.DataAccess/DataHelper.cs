@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TS.Entities;
 
 namespace TS.DataAccess
 {
@@ -27,7 +29,16 @@ namespace TS.DataAccess
             return sub;
         }
 
-        internal static List<Entities.Topic> DataTableToTopics(System.Data.DataTable dt)
+        public static List<SqlParameter> GetParamsForSubject(Subject item)
+        {
+            List<SqlParameter> pars = new List<SqlParameter>();
+            pars.Add(new SqlParameter("id", item.ID));
+            pars.Add(new SqlParameter("name", item.Name));
+            return pars;
+        }
+
+
+        public static List<Entities.Topic> DataTableToTopics(System.Data.DataTable dt)
         {
             var result = new List<TS.Entities.Topic>();
             if (dt != null && dt.Rows.Count > 0)
@@ -46,6 +57,15 @@ namespace TS.DataAccess
             sub.SubjectID = Convert.ToInt32(row["SubjectID"]);
             sub.SubjectName = Convert.ToString(row["SubjectName"]);
             return sub;
+        }
+
+        internal static List<SqlParameter> GetParamsForTopic(Topic item)
+        {
+            List<SqlParameter> pars = new List<SqlParameter>();
+            pars.Add(new SqlParameter("id", item.ID));
+            pars.Add(new SqlParameter("name", item.Name));
+            pars.Add(new SqlParameter("subjectid", item.SubjectID));
+            return pars;
         }
     }
 }

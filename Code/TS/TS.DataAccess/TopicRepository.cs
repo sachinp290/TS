@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,10 @@ namespace TS.DataAccess
     {
         public Topic Get(int id)
         {
-            throw new NotImplementedException();
+            List<SqlParameter> pars = new List<SqlParameter>();
+            pars.Add(new SqlParameter("id", id));
+            var dt = EnterpriseDAO.Get("GetTopics", System.Data.CommandType.StoredProcedure, pars);
+            return DataHelper.DataTableToTopics(dt).FirstOrDefault();
         }
 
         public List<Topic> Get()
@@ -33,6 +37,12 @@ namespace TS.DataAccess
         public void Delete(int id)
         {
             throw new NotImplementedException();
+        }
+
+
+        public void Update(Topic item)
+        {
+            EnterpriseDAO.Update("UpdateTopic", System.Data.CommandType.StoredProcedure, DataHelper.GetParamsForTopic(item));
         }
     }
 }
