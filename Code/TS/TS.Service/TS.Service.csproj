@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{38BBFED3-013D-43CE-863A-F2A67DF51B7E}</ProjectGuid>
+    <ProjectGuid>{0C6BB340-3056-42FA-A8C3-B380CBCECAAC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TS.DataAccess</RootNamespace>
-    <AssemblyName>TS.DataAccess</AssemblyName>
+    <RootNamespace>TS.Service</RootNamespace>
+    <AssemblyName>TS.Service</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,12 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common">
-      <HintPath>..\packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data">
-      <HintPath>..\packages\EnterpriseLibrary.Data.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -45,16 +39,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EnterpriseDAO.cs" />
-    <Compile Include="IRepository.cs" />
-    <Compile Include="ISubjectRepository.cs" />
+    <Compile Include="ISubjectService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SubjectRepository.cs" />
+    <Compile Include="SubjectService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\TS.DataAccess\TS.DataAccess.csproj">
+      <Project>{38bbfed3-013d-43ce-863a-f2a67df51b7e}</Project>
+      <Name>TS.DataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TS.Entities\TS.Entities.csproj">
       <Project>{cbbd06ba-3df4-49d9-bace-37361d159535}</Project>
       <Name>TS.Entities</Name>

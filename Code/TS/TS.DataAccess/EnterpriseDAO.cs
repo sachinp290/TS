@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using TS.Entities;
 
 namespace TS.DataAccess
 {
@@ -13,23 +14,25 @@ namespace TS.DataAccess
             database = DatabaseFactory.CreateDatabase();
         }
 
-        public DataTable GetDataTablefromStoreProcedure<T>(string query, CommandType type)
+        public static List<Subject> GetFromStoreProcedure(string storeProcedureName)
         {
-            DataTable result = new DataTable();
+            List<Subject> result = new List<Subject>();
             using (var con = database.CreateConnection())
             {
                 using (var cmd = con.CreateCommand())
                 {
-                    cmd.CommandType = type;
-                    cmd.CommandText = query;
+                    cmd.CommandText = storeProcedureName;
 
                     using (SqlDataReader dr = cmd.ExecuteReader() as SqlDataReader)
                     {
-                        result.Load(dr);
+                        result.Add(new Subject(dr));
+
                     }
                 }
             }
             return result;
         }
+
+
     }
 }

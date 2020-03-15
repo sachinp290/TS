@@ -5,13 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using TS.Entities;
 
-namespace TS.DataAccess
+namespace TS.Service
 {
-    public class SubjectDAO
+    public interface ISubjectService
     {
-        public List<Subject> GetSubjects()
-        {
-            
-        }
+        List<Subject> GetSubjects();
     }
 }
