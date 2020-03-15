@@ -16,13 +16,13 @@ namespace TS.API.Controllers
         {
             ISubjectService service = new SubjectService();
             return service.GetSubjects();
-
         }
 
         // GET: api/Subject/5
-        public string Get(int id)
+        public Subject Get(int id)
         {
-            return "value";
+            ISubjectService service = new SubjectService();
+            return service.GetSubject(id);
         }
 
         // POST: api/Subject

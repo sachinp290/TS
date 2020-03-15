@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,12 +12,15 @@ namespace TS.DataAccess
     {
         public Subject Get(int id)
         {
-            throw new NotImplementedException();
+            List<SqlParameter> pars = new List<SqlParameter>();
+            pars.Add(new SqlParameter("id", id));
+            var dt = EnterpriseDAO.Get("GetSubjects", System.Data.CommandType.StoredProcedure, pars);
+            return DataHelper.DataTableToStudents(dt).FirstOrDefault();
         }
 
         public List<Subject> Get()
         {
-            var dt = EnterpriseDAO.Get("GetSubjects", System.Data.CommandType.StoredProcedure);
+            var dt = EnterpriseDAO.Get("GetSubjects", System.Data.CommandType.StoredProcedure, null);
             return DataHelper.DataTableToStudents(dt);
         }
 

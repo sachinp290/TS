@@ -18,7 +18,7 @@ namespace TS.DataAccess
             database = DatabaseFactory.CreateDatabase();
         }
 
-        public static DataTable Get(string query, CommandType commandtype, params IDataParameter[] sqlParams)
+        public static DataTable Get(string query, CommandType commandtype, List<SqlParameter> sqlParams)
         {
             DataTable result = new DataTable();
             using (var con = database.CreateConnection())

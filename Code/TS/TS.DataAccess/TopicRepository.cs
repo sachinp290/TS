@@ -16,7 +16,7 @@ namespace TS.DataAccess
 
         public List<Topic> Get()
         {
-            var dt = EnterpriseDAO.Get("GetTopics", System.Data.CommandType.StoredProcedure);
+            var dt = EnterpriseDAO.Get("GetTopics", System.Data.CommandType.StoredProcedure, null);
             return DataHelper.DataTableToTopics(dt);
         }
 

@@ -18,5 +18,10 @@ namespace TS.Service
         {
             return repo.Get();
         }
+
+        public Entities.Subject GetSubject(int id)
+        {
+            return repo.Get(id);
+        }
     }
 }

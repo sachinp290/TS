@@ -10,5 +10,6 @@ namespace TS.Service
     public interface ISubjectService
     {
         List<Subject> GetSubjects();
+        Subject GetSubject(int id);
     }
 }
