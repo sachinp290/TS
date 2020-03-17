@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
+﻿using System.Web.Http;
 using TS.Entities;
 using TS.Service;
 
@@ -12,24 +7,39 @@ namespace TS.API.Controllers
     public class SubjectController : ApiController
     {
         // GET: api/Subject
-        public IEnumerable<Subject> Get()
+        public IHttpActionResult Get()
         {
             ISubjectService service = new SubjectService();
-            return service.GetSubjects();
+            var items = service.GetSubjects();
+
+            if (items.Count == 0)
+            {
+                return NotFound();
+            }
+            return Ok(items);
         }
 
         // GET: api/Subject/5
-        public Subject Get(int id)
+        public IHttpActionResult Get(int id)
         {
             ISubjectService service = new SubjectService();
-            return service.GetSubject(id);
+            var item = service.GetSubject(id);
+            if (item == null)
+            {
+                return NotFound();
+            }
+            return Ok(item);
         }
 
         // POST: api/Subject
-        public void Post([FromBody]Subject value)
+        public IHttpActionResult Post([FromBody]Subject value)
         {
+            if (!ModelState.IsValid)
+                return BadRequest("Invalid data.");
+
             ISubjectService service = new SubjectService();
             service.UpdateSubject(value);
+            return Ok();
         }
 
 

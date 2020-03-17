@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
+﻿using System.Web.Http;
 using TS.Entities;
 using TS.Service;
 
@@ -12,17 +7,27 @@ namespace TS.API.Controllers
     public class TopicController : ApiController
     {
         // GET: api/Topic
-        public IEnumerable<Topic> Get()
+        public IHttpActionResult Get()
         {
             ITopicService service = new TopicService();
-            return service.GetTopics();
+            var items = service.GetTopics();
+            if (items.Count == 0)
+            {
+                return NotFound();
+            }
+            return Ok(items);
         }
 
         // GET: api/Topic/5
-        public Topic Get(int id)
+        public IHttpActionResult Get(int id)
         {
             ITopicService service = new TopicService();
-            return service.GetTopic(id);
+            var item = service.GetTopic(id);
+            if (item == null)
+            {
+                return NotFound();
+            }
+            return Ok(item);
         }
 
         // POST: api/Topic

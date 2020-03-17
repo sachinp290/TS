@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TS.Service", "TS.Service\TS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TS.API", "TS.API\TS.API.csproj", "{4B894706-004B-41F8-A91B-FBD236A7957D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TS.Web", "TS.Web\TS.Web.csproj", "{0FE5ED3D-0A32-456F-87D4-F4288C33E4A3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,12 +41,16 @@ Global
 		{4B894706-004B-41F8-A91B-FBD236A7957D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B894706-004B-41F8-A91B-FBD236A7957D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B894706-004B-41F8-A91B-FBD236A7957D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FE5ED3D-0A32-456F-87D4-F4288C33E4A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FE5ED3D-0A32-456F-87D4-F4288C33E4A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FE5ED3D-0A32-456F-87D4-F4288C33E4A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FE5ED3D-0A32-456F-87D4-F4288C33E4A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {0D112A50-AA96-44E3-A605-EB5D219D4830}
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Data.6.0.1304.0\lib\NET45
+		SolutionGuid = {0D112A50-AA96-44E3-A605-EB5D219D4830}
 	EndGlobalSection
 EndGlobal
