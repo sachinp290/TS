@@ -10,11 +10,12 @@ namespace TS.Web.Controllers
 {
     public class SubjectController : Controller
     {
+        const string baseURL = "http://localhost:49755/api/";
         // GET: Subject
         public ActionResult Index()
         {
             IEnumerable<SubjectViewModel> items = null;
-            string baseURL = "http://localhost:49755/api/";
+
             using (var client = new HttpClient())
             {
                 items = TS.Web.Helpers.APIGetHelper<SubjectViewModel>.Get(baseURL, "subject");
@@ -27,12 +28,6 @@ namespace TS.Web.Controllers
             return View(items);
         }
 
-        // GET: Subject/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
         // GET: Subject/Create
         public ActionResult Create()
         {
@@ -43,15 +38,19 @@ namespace TS.Web.Controllers
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
-            try
+            using (var client = new HttpClient())
             {
-                // TODO: Add insert logic here
+                client.BaseAddress = new Uri(baseURL);
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
+                //HTTP POST
+                var postTask = client.PostAsJsonAsync<SubjectViewModel>("subject", subject);
+                postTask.Wait();
+
+                var result = postTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Index");
+                }
             }
         }
 
