@@ -11,6 +11,7 @@ namespace TS.API.Controllers
         {
             ITopicService service = new TopicService();
             var items = service.GetTopics();
+
             if (items.Count == 0)
             {
                 return NotFound();
@@ -31,20 +32,24 @@ namespace TS.API.Controllers
         }
 
         // POST: api/Topic
-        public void Post([FromBody]Topic value)
+        public IHttpActionResult Post([FromBody]Topic value)
         {
+            if (!ModelState.IsValid)
+                return BadRequest("Invalid data.");
+
             ITopicService service = new TopicService();
             service.UpdateTopic(value);
-        }
-
-        // PUT: api/Topic/5
-        public void Put(int id, [FromBody]string value)
-        {
+            return Ok();
         }
 
         // DELETE: api/Topic/5
-        public void Delete(int id)
+        public IHttpActionResult Delete(int id)
         {
+            if (id <= 0)
+                return BadRequest("Not a valid id");
+            ITopicService service = new TopicService();
+            service.DeleteTopic(id);
+            return Ok();
         }
     }
 }

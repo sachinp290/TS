@@ -8,7 +8,7 @@ using TS.Entities;
 
 namespace TS.DataAccess
 {
-   public class TopicRepository:ITopicRepository, IRepository<Topic>
+    public class TopicRepository : ITopicRepository, IRepository<Topic>
     {
         public Topic Get(int id)
         {
@@ -24,25 +24,16 @@ namespace TS.DataAccess
             return DataHelper.DataTableToTopics(dt);
         }
 
-        public int Add(Topic item)
+        public void Update(Topic item)
         {
-            throw new NotImplementedException();
-        }
-
-        public void Edit(Topic item)
-        {
-            throw new NotImplementedException();
+            EnterpriseDAO.Update("UpdateTopic", System.Data.CommandType.StoredProcedure, DataHelper.GetParamsForTopic(item));
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
-        }
-
-
-        public void Update(Topic item)
-        {
-            EnterpriseDAO.Update("UpdateTopic", System.Data.CommandType.StoredProcedure, DataHelper.GetParamsForTopic(item));
+            List<SqlParameter> pars = new List<SqlParameter>();
+            pars.Add(new SqlParameter("id", id));
+            EnterpriseDAO.Delete("DeleteTopic", System.Data.CommandType.StoredProcedure, pars);
         }
     }
 }

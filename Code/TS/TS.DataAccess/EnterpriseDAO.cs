@@ -23,12 +23,12 @@ namespace TS.DataAccess
            return Execute(query, commandtype, pars);
         }
 
-        internal static void Update(string query, CommandType commandType, List<SqlParameter> pars)
+        public static void Update(string query, CommandType commandType, List<SqlParameter> pars)
         {
             Execute(query, commandType, pars);
         }
 
-        public static DataTable Execute(string query, CommandType commandtype, List<SqlParameter> sqlParams)
+        private static DataTable Execute(string query, CommandType commandtype, List<SqlParameter> sqlParams)
         {
             DataTable result = new DataTable();
             using (var con = database.CreateConnection())
@@ -53,6 +53,33 @@ namespace TS.DataAccess
                 }
             }
             return result;
+        }
+
+        private static void ExecuteNonQuery(string query, CommandType commandtype, List<SqlParameter> sqlParams)
+        {
+            using (var con = database.CreateConnection())
+            {
+                using (var cmd = con.CreateCommand())
+                {
+                    if (sqlParams != null)
+                    {
+                        foreach (IDataParameter para in sqlParams)
+                        {
+                            cmd.Parameters.Add(para);
+                        }
+                    }
+                    cmd.CommandText = query;
+                    cmd.CommandType = commandtype;
+                    con.Open(); 
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+        }
+
+        internal static void Delete(string query, CommandType commandType, List<SqlParameter> pars)
+        {
+            ExecuteNonQuery(query, commandType, pars);
         }
     }
 }

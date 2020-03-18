@@ -6,8 +6,6 @@ namespace TS.DataAccess
     {
         T Get(int id);
         List<T> Get();
-        int Add(T item);
-        void Edit(T item);
         void Delete(int id);
         void Update(T item);
     }

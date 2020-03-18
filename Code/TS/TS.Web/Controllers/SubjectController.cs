@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
+using TS.Web.Helpers;
 using TS.Web.Models;
 
 namespace TS.Web.Controllers
@@ -18,7 +19,7 @@ namespace TS.Web.Controllers
 
             using (var client = new HttpClient())
             {
-                items = TS.Web.Helpers.APIGetHelper<SubjectViewModel>.Get(baseURL, "subject");
+                items = APIHelper<SubjectViewModel>.Get(baseURL, "subject");
                 if (items == null)
                 {
                     items = Enumerable.Empty<SubjectViewModel>();
@@ -36,39 +37,48 @@ namespace TS.Web.Controllers
 
         // POST: Subject/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(SubjectViewModel item)
         {
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri(baseURL);
+            var result = APIHelper<SubjectViewModel>.Post(baseURL, "subject", item);
+            if (result)
+                return RedirectToAction("Index");
 
-                //HTTP POST
-                var postTask = client.PostAsJsonAsync<SubjectViewModel>("subject", subject);
-                postTask.Wait();
+            ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
 
-                var result = postTask.Result;
-                if (result.IsSuccessStatusCode)
-                {
-                    return RedirectToAction("Index");
-                }
-            }
+            return View(item);
         }
 
         // GET: Subject/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            SubjectViewModel item = null;
+
+            using (var client = new HttpClient())
+            {
+                item = APIHelper<SubjectViewModel>.Get(baseURL, "subject", "id=" + id);
+                if (item == null)
+                {
+                    item = null;
+                    ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
+                }
+            }
+            return View(item);
+
         }
 
         // POST: Subject/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, SubjectViewModel item)
         {
             try
             {
-                // TODO: Add update logic here
+                var result = APIHelper<SubjectViewModel>.Post(baseURL, "subject", item);
+                if (result)
+                    return RedirectToAction("Index");
 
-                return RedirectToAction("Index");
+                ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
+
+                return View(item);
             }
             catch
             {
@@ -79,18 +89,33 @@ namespace TS.Web.Controllers
         // GET: Subject/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            SubjectViewModel item = null;
+
+            using (var client = new HttpClient())
+            {
+                item = APIHelper<SubjectViewModel>.Get(baseURL, "subject", "id=" + id);
+                if (item == null)
+                {
+                    item = null;
+                    ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
+                }
+            }
+            return View(item);
         }
 
         // POST: Subject/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, FormCollection item)
         {
             try
             {
-                // TODO: Add delete logic here
+                var result = APIHelper<SubjectViewModel>.Delete(baseURL, "subject", id);
+                if (result)
+                    return RedirectToAction("Index");
 
-                return RedirectToAction("Index");
+                ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
+
+                return View();
             }
             catch
             {

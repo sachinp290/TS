@@ -42,15 +42,14 @@ namespace TS.API.Controllers
             return Ok();
         }
 
-
-        // PUT: api/Subject/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
         // DELETE: api/Subject/5
-        public void Delete(int id)
+        public IHttpActionResult Delete(int id)
         {
+            if (id <= 0)
+                return BadRequest("Not a valid id");
+            ISubjectService service = new SubjectService();
+            service.DeleteSubject(id);
+            return Ok();
         }
     }
 }

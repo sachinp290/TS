@@ -29,5 +29,10 @@ namespace TS.Service
         {
             repo.Update(item);
         }
+
+        public void DeleteTopic(int id)
+        {
+            repo.Delete(id);
+        }
     }
 }

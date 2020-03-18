@@ -24,25 +24,16 @@ namespace TS.DataAccess
             return DataHelper.DataTableToStudents(dt);
         }
 
-        public int Add(Subject item)
+        public void Update(Subject item)
         {
-            throw new NotImplementedException();
-        }
-
-        public void Edit(Subject item)
-        {
-            throw new NotImplementedException();
+            EnterpriseDAO.Update("UpdateSubject", System.Data.CommandType.StoredProcedure, DataHelper.GetParamsForSubject(item));
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
-        }
-
-
-        public void Update(Subject item)
-        {
-            EnterpriseDAO.Update("UpdateSubject", System.Data.CommandType.StoredProcedure, DataHelper.GetParamsForSubject(item));
+            List<SqlParameter> pars = new List<SqlParameter>();
+            pars.Add(new SqlParameter("id", id));
+            EnterpriseDAO.Delete("DeleteSubject", System.Data.CommandType.StoredProcedure, pars);
         }
     }
 }
