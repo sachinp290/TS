@@ -20,8 +20,6 @@ namespace TS.DataAccess
             }
             return result;
         }
-       
-        
 
         public static List<SqlParameter> GetParamsForSubject(Subject item)
         {
