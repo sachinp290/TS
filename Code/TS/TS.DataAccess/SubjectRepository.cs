@@ -6,7 +6,7 @@ using TS.Entities;
 
 namespace TS.DataAccess
 {
-    public class SubjectRepository : IRepository<Subject>, ISubjectRepository
+    public class SubjectRepository : IRepository<Subject>
     {
         public Subject Get(int id)
         {

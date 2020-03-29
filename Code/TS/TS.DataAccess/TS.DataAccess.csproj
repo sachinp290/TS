@@ -51,8 +51,6 @@
     <Compile Include="IDNamePairRepository.cs" />
     <Compile Include="IIDNamePairRepository.cs" />
     <Compile Include="IRepository.cs" />
-    <Compile Include="ISubjectRepository.cs" />
-    <Compile Include="ITopicRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuestionRepository.cs" />
     <Compile Include="SubjectRepository.cs" />

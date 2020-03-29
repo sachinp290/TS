@@ -1,31 +1,32 @@
 ﻿using System.Collections.Generic;
 using TS.DataAccess;
+using TS.Entities;
 
 namespace TS.Service
 {
-   public class QuestionService : IQuestionService
+   public class QuestionService : IService<Question>
     {
         IRepository<TS.Entities.Question> repo;
         public QuestionService()
         {
             repo = new QuestionRepository();
         }
-        public List<Entities.Question> GetQuestions()
+        public List<Entities.Question> Get()
         {
             return repo.Get();
         }
 
-        public Entities.Question GetQuestion(int id)
+        public Entities.Question Get(int id)
         {
             return repo.Get(id);
         }
 
-        public void UpdateQuestion(Entities.Question item)
+        public void Update(Entities.Question item)
         {
             repo.Update(item);
         }
 
-        public void DeleteQuestion(int id)
+        public void Delete(int id)
         {
             repo.Delete(id);
         }

@@ -41,9 +41,7 @@
   <ItemGroup>
     <Compile Include="IDNamePairService.cs" />
     <Compile Include="IIDNamePairService.cs" />
-    <Compile Include="IQuestionService.cs" />
-    <Compile Include="ISubjectService.cs" />
-    <Compile Include="ITopicService.cs" />
+    <Compile Include="IService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuestionService.cs" />
     <Compile Include="SubjectService.cs" />

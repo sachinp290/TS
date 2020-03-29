@@ -9,16 +9,16 @@ namespace TS.API.Controllers
         // GET: api/Question
         public IHttpActionResult Get()
         {
-            IQuestionService service = new QuestionService();
-            var items = service.GetQuestions();
+            IService<Question> service = new QuestionService();
+            var items = service.Get();
             return Ok(items);
         }
 
         // GET: api/Question/5
         public IHttpActionResult Get(int id)
         {
-            IQuestionService service = new QuestionService();
-            var item = service.GetQuestion(id);
+            IService<Question> service = new QuestionService();
+            var item = service.Get(id);
             return Ok(item);
         }
 
@@ -28,8 +28,8 @@ namespace TS.API.Controllers
             if (!ModelState.IsValid)
                 return BadRequest("Invalid data.");
 
-            IQuestionService service = new QuestionService();
-            service.UpdateQuestion(value);
+            IService<Question> service = new QuestionService();
+            service.Update(value);
             return Ok();
         }
 
@@ -38,8 +38,8 @@ namespace TS.API.Controllers
         {
             if (id <= 0)
                 return BadRequest("Not a valid id");
-            IQuestionService service = new QuestionService();
-            service.DeleteQuestion(id);
+            IService<Question> service = new QuestionService();
+            service.Delete(id);
             return Ok();
         }
     }
