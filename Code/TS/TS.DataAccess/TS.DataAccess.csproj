@@ -48,6 +48,8 @@
   <ItemGroup>
     <Compile Include="DataHelper.cs" />
     <Compile Include="EnterpriseDAO.cs" />
+    <Compile Include="IDNamePairRepository.cs" />
+    <Compile Include="IIDNamePairRepository.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="ISubjectRepository.cs" />
     <Compile Include="ITopicRepository.cs" />

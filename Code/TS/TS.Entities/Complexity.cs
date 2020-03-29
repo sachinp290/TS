@@ -1,13 +1,9 @@
 ﻿
 namespace TS.Entities
 {
-
-    public enum Complexity
+    public class IDNamePair
     {
-        SuperEasy = 1,
-        Easy = 2,
-        Medium = 3,
-        Hard = 4,
-        SuperHard = 5
+        public int ID { get; set; }
+        public string Name { get; set; }
     }
 }

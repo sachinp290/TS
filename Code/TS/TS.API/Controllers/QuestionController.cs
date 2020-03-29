@@ -11,11 +11,6 @@ namespace TS.API.Controllers
         {
             IQuestionService service = new QuestionService();
             var items = service.GetQuestions();
-
-            if (items.Count == 0)
-            {
-                return NotFound();
-            }
             return Ok(items);
         }
 
@@ -24,10 +19,6 @@ namespace TS.API.Controllers
         {
             IQuestionService service = new QuestionService();
             var item = service.GetQuestion(id);
-            if (item == null)
-            {
-                return NotFound();
-            }
             return Ok(item);
         }
 
