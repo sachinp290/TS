@@ -9,8 +9,8 @@ namespace TS.API.Controllers
         // GET: api/Subject
         public IHttpActionResult Get()
         {
-            ISubjectService service = new SubjectService();
-            var items = service.GetSubjects();
+            IService<Subject> service = new SubjectService();
+            var items = service.Get();
 
             if (items.Count == 0)
             {
@@ -22,8 +22,8 @@ namespace TS.API.Controllers
         // GET: api/Subject/5
         public IHttpActionResult Get(int id)
         {
-            ISubjectService service = new SubjectService();
-            var item = service.GetSubject(id);
+            IService<Subject> service = new SubjectService();
+            var item = service.Get(id);
             if (item == null)
             {
                 return NotFound();
@@ -37,8 +37,8 @@ namespace TS.API.Controllers
             if (!ModelState.IsValid)
                 return BadRequest("Invalid data.");
 
-            ISubjectService service = new SubjectService();
-            service.UpdateSubject(value);
+            IService<Subject> service = new SubjectService();
+            service.Update(value);
             return Ok();
         }
 
@@ -47,8 +47,8 @@ namespace TS.API.Controllers
         {
             if (id <= 0)
                 return BadRequest("Not a valid id");
-            ISubjectService service = new SubjectService();
-            service.DeleteSubject(id);
+            IService<Subject> service = new SubjectService();
+            service.Delete(id);
             return Ok();
         }
     }
