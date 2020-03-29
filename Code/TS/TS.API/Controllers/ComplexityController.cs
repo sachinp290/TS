@@ -8,13 +8,13 @@ using TS.Service;
 
 namespace TS.API.Controllers
 {
-    public class ComplexityController : ApiController
+    public class IDNamePairController : ApiController
     {
         // GET: api/Question
-        public IHttpActionResult Get()
+        public IHttpActionResult Get(string tableName)
         {
             IIDNamePairService service = new IDNamePairService();
-            var items = service.Get("Complexity");
+            var items = service.Get(tableName);
             return Ok(items);
         }
 

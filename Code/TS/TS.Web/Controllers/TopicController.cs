@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 using TS.Web.Helpers;
@@ -9,14 +8,14 @@ using TS.Web.Models;
 
 namespace TS.Web.Controllers
 {
-    public class SubjectController : Controller
+    public class TopicController : Controller
     {
         // GET: Subject
         public ActionResult Index()
         {
             try
             {
-                IEnumerable<SubjectViewModel> items = APIHelper<SubjectViewModel>.Get("subject");
+                IEnumerable<TopicViewModel> items = APIHelper<TopicViewModel>.Get( "topic");
                 return View(items);
             }
             catch (Exception ea)
@@ -24,23 +23,29 @@ namespace TS.Web.Controllers
                 throw ea;
             }
         }
-
-        // GET: Subject/Create
+        // GET: Topic/Create
         public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Subject/Create
-        [HttpPost]
-        public ActionResult Create(SubjectViewModel item)
         {
             try
             {
-                var result = APIHelper<SubjectViewModel>.Post("subject", item);
+                ViewBag.Subjects = PageHelper.GetSelectList("subject", "0", true);
+                return View();
+            }
+            catch (Exception ea)
+            {
+                throw ea;
+            }
+        }
+
+        // POST: Topic/Create
+        [HttpPost]
+        public ActionResult Create(TopicViewModel item)
+        {
+            try
+            {
+                var result = APIHelper<TopicViewModel>.Post( "topic", item);
                 if (result)
                     return RedirectToAction("Index");
-
                 return View(item);
             }
             catch (Exception ea)
@@ -49,12 +54,13 @@ namespace TS.Web.Controllers
             }
         }
 
-        // GET: Subject/Edit/5
+        // GET: Topic/Edit/5
         public ActionResult Edit(int id)
         {
             try
             {
-                SubjectViewModel item = APIHelper<SubjectViewModel>.Get( "subject", "id=" + id);
+                TopicViewModel item = APIHelper<TopicViewModel>.Get( "topic", "id=" + id);
+                ViewBag.Subjects = ViewBag.Subjects = PageHelper.GetSelectList("subject", item.SubjectID.ToString(), false);
                 return View(item);
             }
             catch (Exception ea)
@@ -62,14 +68,13 @@ namespace TS.Web.Controllers
                 throw ea;
             }
         }
-
-        // POST: Subject/Edit/5
+        // POST: Topic/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, SubjectViewModel item)
+        public ActionResult Edit(int id, TopicViewModel item)
         {
             try
             {
-                var result = APIHelper<SubjectViewModel>.Post( "subject", item);
+                var result = APIHelper<TopicViewModel>.Post( "topic", item);
                 if (result)
                     return RedirectToAction("Index");
 
@@ -81,12 +86,12 @@ namespace TS.Web.Controllers
             }
         }
 
-        // GET: Subject/Delete/5
+        // GET: Topic/Delete/5
         public ActionResult Delete(int id)
         {
             try
             {
-                SubjectViewModel item = APIHelper<SubjectViewModel>.Get( "subject", "id=" + id);
+                TopicViewModel item = APIHelper<TopicViewModel>.Get( "topic", "id=" + id);
                 return View(item);
             }
             catch (Exception ea)
@@ -94,14 +99,13 @@ namespace TS.Web.Controllers
                 throw ea;
             }
         }
-
-        // POST: Subject/Delete/5
+        // POST: Topic/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection item)
+        public ActionResult Delete(int id, FormCollection collection)
         {
             try
             {
-                var result = APIHelper<SubjectViewModel>.Delete( "subject", id);
+                var result = APIHelper<TopicViewModel>.Delete( "topic", id);
                 if (result)
                     return RedirectToAction("Index");
                 return View();

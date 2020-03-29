@@ -10,13 +10,13 @@ namespace TS.Web.Helpers
 {
     public class APIHelper<T> where T : class
     {
-        public static IEnumerable<T> Get(string baseURL, string url)
+        public static IEnumerable<T> Get(string url)
         {
             IEnumerable<T> items = null;
 
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri(baseURL);
+                client.BaseAddress = new Uri(ConstantHelper.BASEURL);
                 //HTTP GET
                 var responseTask = client.GetAsync(url);
                 responseTask.Wait();
@@ -33,13 +33,13 @@ namespace TS.Web.Helpers
             return items;
         }
 
-        public static T Get(string baseURL, string url, string querystring)
+        public static T Get(string url, string querystring)
         {
             T item = null;
 
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri(baseURL);
+                client.BaseAddress = new Uri(ConstantHelper.BASEURL);
                 //HTTP GET
                 var responseTask = client.GetAsync(url + "?" + querystring);
                 responseTask.Wait();
@@ -56,11 +56,11 @@ namespace TS.Web.Helpers
             return item;
         }
 
-        public static bool Post(string baseURL, string url, T item)
+        public static bool Post(string url, T item)
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri(baseURL);
+                client.BaseAddress = new Uri(ConstantHelper.BASEURL);
 
                 //HTTP POST
                 var postTask = client.PostAsJsonAsync<T>(url, item);
@@ -75,11 +75,11 @@ namespace TS.Web.Helpers
             return false;
         }
 
-        public static bool Delete(string baseURL, string url, int id)
+        public static bool Delete(string url, int id)
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri(baseURL);
+                client.BaseAddress = new Uri(ConstantHelper.BASEURL);
 
                 //HTTP Delete
                 var deleteTask = client.DeleteAsync(url + "/" + id);
