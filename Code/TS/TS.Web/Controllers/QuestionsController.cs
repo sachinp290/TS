@@ -8,14 +8,14 @@ using TS.Web.Models;
 
 namespace TS.Web.Controllers
 {
-    public class TopicController : Controller
+    public class QuestionsController : Controller
     {
         // GET: Subject
         public ActionResult Index()
         {
             try
             {
-                IEnumerable<TopicViewModel> items = APIHelper<TopicViewModel>.Get( "topic");
+                IEnumerable<QuestionViewModel> items = APIHelper<QuestionViewModel>.Get("Question");
                 return View(items);
             }
             catch (Exception ea)
@@ -23,12 +23,18 @@ namespace TS.Web.Controllers
                 throw ea;
             }
         }
-        // GET: Topic/Create
+        // GET: Question/Create
         public ActionResult Create()
         {
             try
             {
-                ViewBag.Subjects = PageHelper.GetSelectList("subject", "0", true);
+                ViewBag.Topics = PageHelper.GetSelectList("topic", "0", true);
+                ViewBag.Complexities = PageHelper.GetSelectList("complexity", "0", true);
+                ViewBag.Options = new SelectList((new List<IDNamePair>() { new IDNamePair(0, "Select"),  new IDNamePair(0, "Option1"), 
+                    new IDNamePair(0, "Option2"), new IDNamePair(0, "Option3"), new IDNamePair(0, "Option4"), }),
+                                    "Name",
+                                    "Name",
+                                    null);
                 return View();
             }
             catch (Exception ea)
@@ -37,13 +43,13 @@ namespace TS.Web.Controllers
             }
         }
 
-        // POST: Topic/Create
+        // POST: Question/Create
         [HttpPost]
-        public ActionResult Create(TopicViewModel item)
+        public ActionResult Create(QuestionViewModel item)
         {
             try
             {
-                var result = APIHelper<TopicViewModel>.Post( "topic", item);
+                var result = APIHelper<QuestionViewModel>.Post("Question", item);
                 if (result)
                     return RedirectToAction("Index");
                 return View(item);
@@ -54,13 +60,19 @@ namespace TS.Web.Controllers
             }
         }
 
-        // GET: Topic/Edit/5
+        // GET: Question/Edit/5
         public ActionResult Edit(int id)
         {
             try
             {
-                TopicViewModel item = APIHelper<TopicViewModel>.Get( "topic", "id=" + id);
-                ViewBag.Subjects = ViewBag.Subjects = PageHelper.GetSelectList("subject", item.SubjectID.ToString(), false);
+                QuestionViewModel item = APIHelper<QuestionViewModel>.Get("Question", "id=" + id);
+                ViewBag.Topics = PageHelper.GetSelectList("topic", item.TopicID.ToString(), false);
+                ViewBag.Complexities = PageHelper.GetSelectList("complexity", item.ComplexityID.ToString(), false);
+                ViewBag.Options = new SelectList((new List<IDNamePair>() { new IDNamePair(0, "Option1"), 
+                    new IDNamePair(0, "Option2"), new IDNamePair(0, "Option3"), new IDNamePair(0, "Option4"), }),
+                                    "Name",
+                                    "Name",
+                                    null);
                 return View(item);
             }
             catch (Exception ea)
@@ -68,13 +80,13 @@ namespace TS.Web.Controllers
                 throw ea;
             }
         }
-        // POST: Topic/Edit/5
+        // POST: Question/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, TopicViewModel item)
+        public ActionResult Edit(int id, QuestionViewModel item)
         {
             try
             {
-                var result = APIHelper<TopicViewModel>.Post( "topic", item);
+                var result = APIHelper<QuestionViewModel>.Post("Question", item);
                 if (result)
                     return RedirectToAction("Index");
 
@@ -86,12 +98,12 @@ namespace TS.Web.Controllers
             }
         }
 
-        // GET: Topic/Delete/5
+        // GET: Question/Delete/5
         public ActionResult Delete(int id)
         {
             try
             {
-                TopicViewModel item = APIHelper<TopicViewModel>.Get( "topic", "id=" + id);
+                QuestionViewModel item = APIHelper<QuestionViewModel>.Get("Question", "id=" + id);
                 return View(item);
             }
             catch (Exception ea)
@@ -99,13 +111,13 @@ namespace TS.Web.Controllers
                 throw ea;
             }
         }
-        // POST: Topic/Delete/5
+        // POST: Question/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
             try
             {
-                var result = APIHelper<TopicViewModel>.Delete( "topic", id);
+                var result = APIHelper<QuestionViewModel>.Delete("Question", id);
                 if (result)
                     return RedirectToAction("Index");
                 return View();

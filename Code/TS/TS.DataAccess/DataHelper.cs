@@ -52,6 +52,7 @@ namespace TS.DataAccess
             pars.Add(new SqlParameter("correctanswer", item.CorrectAnswer));
             pars.Add(new SqlParameter("isready", item.IsReady));
             pars.Add(new SqlParameter("language", item.Language));
+            pars.Add(new SqlParameter("reason", item.Reason));
             return pars;
         }
 

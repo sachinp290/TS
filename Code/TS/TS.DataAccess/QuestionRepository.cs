@@ -49,6 +49,8 @@ namespace TS.DataAccess
             item.Reason = Convert.ToString(row["Reason"]);
             item.Text = Convert.ToString(row["Text"]);
             item.TopicID = Convert.ToInt32(row["TopicID"]);
+            item.TopicName= Convert.ToString(row["TopicName"]);
+            item.ComplexityName = Convert.ToString(row["ComplexityName"]);
             return item;
         }
     }

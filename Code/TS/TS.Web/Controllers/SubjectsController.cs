@@ -9,7 +9,7 @@ using TS.Web.Models;
 
 namespace TS.Web.Controllers
 {
-    public class SubjectController : Controller
+    public class SubjectsController : Controller
     {
         // GET: Subject
         public ActionResult Index()

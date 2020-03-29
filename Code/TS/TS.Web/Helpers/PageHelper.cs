@@ -10,7 +10,7 @@ namespace TS.Web.Helpers
         {
             var items = APIHelper<IDNamePair>.Get("idnamepair?tableName=" + Entity).ToList();
             if (AddSelectItem)
-                items.Insert(0, new IDNamePair(0, "Select Item"));
+                items.Insert(0, new IDNamePair(0, "Select"));
             return new SelectList((items),
                                     "ID",
                                     "Name",
