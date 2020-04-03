@@ -8,29 +8,29 @@ using TS.Entities;
 
 namespace TS.Service
 {
-    public class SubjectService : ISubjectService
+    public class SubjectService : IService<Subject>
     {
         IRepository<TS.Entities.Subject> repo;
         public SubjectService()
         {
             repo = new SubjectRepository();
         }
-        public List<Entities.Subject> GetSubjects()
+        public List<Entities.Subject> Get()
         {
             return repo.Get();
         }
 
-        public Entities.Subject GetSubject(int id)
+        public Entities.Subject Get(int id)
         {
             return repo.Get(id);
         }
 
-        public void UpdateSubject(Subject item)
+        public void Update(Subject item)
         {
             repo.Update(item);
         }
 
-        public void DeleteSubject(int id)
+        public void Delete(int id)
         {
             repo.Delete(id);
         }

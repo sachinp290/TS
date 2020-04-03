@@ -25,7 +25,7 @@ BEGIN
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
 
-	select a.ID,b.Name, SubjectID, b.Name SubjectName from Topic a join Subject b on a.SubjectID = b.ID 
+	select a.ID,a.Name, SubjectID, b.Name SubjectName from Topic a join Subject b on a.SubjectID = b.ID 
 	where @id is null or a.ID=@id
 
 END

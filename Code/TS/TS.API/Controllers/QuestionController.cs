@@ -4,50 +4,41 @@ using TS.Service;
 
 namespace TS.API.Controllers
 {
-    public class TopicController : ApiController
+    public class QuestionController : ApiController
     {
-        // GET: api/Topic
+        // GET: api/Question
         public IHttpActionResult Get()
         {
-            IService<Topic> service = new TopicService();
+            IService<Question> service = new QuestionService();
             var items = service.Get();
-
-            if (items.Count == 0)
-            {
-                return NotFound();
-            }
             return Ok(items);
         }
 
-        // GET: api/Topic/5
+        // GET: api/Question/5
         public IHttpActionResult Get(int id)
         {
-            IService<Topic> service = new TopicService();
+            IService<Question> service = new QuestionService();
             var item = service.Get(id);
-            if (item == null)
-            {
-                return NotFound();
-            }
             return Ok(item);
         }
 
-        // POST: api/Topic
-        public IHttpActionResult Post([FromBody]Topic value)
+        // POST: api/Question
+        public IHttpActionResult Post([FromBody]Question value)
         {
             if (!ModelState.IsValid)
                 return BadRequest("Invalid data.");
 
-            IService<Topic>  service = new TopicService();
+            IService<Question> service = new QuestionService();
             service.Update(value);
             return Ok();
         }
 
-        // DELETE: api/Topic/5
+        // DELETE: api/Question/5
         public IHttpActionResult Delete(int id)
         {
             if (id <= 0)
                 return BadRequest("Not a valid id");
-            IService<Topic> service = new TopicService();
+            IService<Question> service = new QuestionService();
             service.Delete(id);
             return Ok();
         }

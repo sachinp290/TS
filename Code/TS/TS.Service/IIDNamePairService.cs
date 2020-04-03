@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TS.Entities;
 
-namespace TS.DataAccess
+namespace TS.Service
 {
-    public interface ITopicRepository
+   public interface IIDNamePairService
     {
+       List<IDNamePair> Get(string tableName);
     }
 }

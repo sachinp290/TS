@@ -10,23 +10,15 @@ namespace TS.DataAccess
 {
     public class DataHelper
     {
-        public static List<TS.Entities.Subject> DataTableToStudents(System.Data.DataTable dt)
+        public static List<T> DataTableToObjects<T>(System.Data.DataTable dt, Func<System.Data.DataRow, T> ToObject)
         {
-            var result = new List<TS.Entities.Subject>();
+            var result = new List<T>();
             if (dt != null && dt.Rows.Count > 0)
             {
                 foreach (System.Data.DataRow dr in dt.Rows)
-                    result.Add(ToSubject(dr));
+                    result.Add(ToObject(dr));
             }
             return result;
-        }
-
-        private static TS.Entities.Subject ToSubject(System.Data.DataRow row)
-        {
-            TS.Entities.Subject sub = new TS.Entities.Subject();
-            sub.ID = Convert.ToInt32(row["ID"]);
-            sub.Name = Convert.ToString(row["Name"]);
-            return sub;
         }
 
         public static List<SqlParameter> GetParamsForSubject(Subject item)
@@ -37,29 +29,7 @@ namespace TS.DataAccess
             return pars;
         }
 
-
-        public static List<Entities.Topic> DataTableToTopics(System.Data.DataTable dt)
-        {
-            var result = new List<TS.Entities.Topic>();
-            if (dt != null && dt.Rows.Count > 0)
-            {
-                foreach (System.Data.DataRow dr in dt.Rows)
-                    result.Add(ToTopic(dr));
-            }
-            return result;
-        }
-
-        private static TS.Entities.Topic ToTopic(System.Data.DataRow row)
-        {
-            TS.Entities.Topic sub = new TS.Entities.Topic();
-            sub.ID = Convert.ToInt32(row["ID"]);
-            sub.Name = Convert.ToString(row["Name"]);
-            sub.SubjectID = Convert.ToInt32(row["SubjectID"]);
-            sub.SubjectName = Convert.ToString(row["SubjectName"]);
-            return sub;
-        }
-
-        internal static List<SqlParameter> GetParamsForTopic(Topic item)
+        public static List<SqlParameter> GetParamsForTopic(Topic item)
         {
             List<SqlParameter> pars = new List<SqlParameter>();
             pars.Add(new SqlParameter("id", item.ID));
@@ -67,5 +37,27 @@ namespace TS.DataAccess
             pars.Add(new SqlParameter("subjectid", item.SubjectID));
             return pars;
         }
+
+        internal static List<SqlParameter> GetParamsForQuestion(Question item)
+        {
+            List<SqlParameter> pars = new List<SqlParameter>();
+            pars.Add(new SqlParameter("id", item.ID));
+            pars.Add(new SqlParameter("topicid", item.TopicID));
+            pars.Add(new SqlParameter("text", item.Text));
+            pars.Add(new SqlParameter("option1", item.Option1));
+            pars.Add(new SqlParameter("option2", item.Option2));
+            pars.Add(new SqlParameter("option3", item.Option3));
+            pars.Add(new SqlParameter("option4", item.Option4));
+            pars.Add(new SqlParameter("complexityid", item.ComplexityID));
+            pars.Add(new SqlParameter("correctanswer", item.CorrectAnswer));
+            pars.Add(new SqlParameter("isready", item.IsReady));
+            pars.Add(new SqlParameter("language", item.Language));
+            pars.Add(new SqlParameter("reason", item.Reason));
+            return pars;
+        }
+
+
+
+       
     }
 }
