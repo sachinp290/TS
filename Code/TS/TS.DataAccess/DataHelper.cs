@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TS.Entities;
 
 namespace TS.DataAccess
@@ -56,8 +53,17 @@ namespace TS.DataAccess
             return pars;
         }
 
-
-
-       
+        internal static List<SqlParameter> GetParamsForTestConfiguration(TestConfiguration item)
+        {
+            List<SqlParameter> pars = new List<SqlParameter>();
+            pars.Add(new SqlParameter("id", item.ID));
+            pars.Add(new SqlParameter("complexityid", item.ComplexityID));
+            pars.Add(new SqlParameter("correctanswerstopass", item.CorrectAnswersToPass));
+            pars.Add(new SqlParameter("nooftotalquestions", item.NoOfTotalQuestions));
+            pars.Add(new SqlParameter("noofquestions", item.NoOfQuestions));
+            pars.Add(new SqlParameter("totalmarks", item.TotalMarks));
+            pars.Add(new SqlParameter("totaltime", item.TotalTime));
+            return pars;
+        }
     }
 }
