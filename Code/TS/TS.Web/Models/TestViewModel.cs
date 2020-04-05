@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace TS.Entities
+namespace TS.Web.Models
 {
-    public class Test
+    public class TestViewModel
     {
         public int ID { get; set; }
         public int TestConfigurationID { get; set; }

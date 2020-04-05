@@ -46,6 +46,7 @@
     <Compile Include="QuestionService.cs" />
     <Compile Include="SubjectService.cs" />
     <Compile Include="TestConfigurationService.cs" />
+    <Compile Include="TestService.cs" />
     <Compile Include="TopicService.cs" />
   </ItemGroup>
   <ItemGroup>

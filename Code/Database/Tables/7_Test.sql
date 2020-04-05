@@ -9,9 +9,12 @@ GO
 CREATE TABLE [dbo].[Test](
 	[ID] [int] IDENTITY(1,1) NOT NULL,
 	[TestConfigurationId] [int] NOT NULL,
-	[GeneratedDate] [datetime] NOT NULL,
-	[StartDate] [datetime] NOT NULL,
-	[EndDate] [datetime] NOT NULL,
+	[GeneratedDate] [datetime]  NULL,
+	[StartDate] [datetime]  NULL,
+	[EndDate] [datetime]  NULL,
+	[EndDate] [datetime] NULL,
+	[IsReady] [bit] NOT NULL,
+	
  CONSTRAINT [PK_Test] PRIMARY KEY CLUSTERED 
 (
 	[ID] ASC
@@ -27,4 +30,5 @@ GO
 ALTER TABLE [dbo].[Test] CHECK CONSTRAINT [FK_Test_TestConfiguration]
 GO
 
-
+ALTER TABLE [dbo].[Test] ADD  CONSTRAINT [DF_Test_IsReady]  DEFAULT ((0)) FOR [IsReady]
+GO

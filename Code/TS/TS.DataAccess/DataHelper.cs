@@ -65,5 +65,17 @@ namespace TS.DataAccess
             pars.Add(new SqlParameter("totaltime", item.TotalTime));
             return pars;
         }
+
+        internal static List<SqlParameter> GetParamsForTest(Test item)
+        {
+            List<SqlParameter> pars = new List<SqlParameter>();
+            pars.Add(new SqlParameter("id", item.ID));
+            pars.Add(new SqlParameter("testconfigurationid", item.TestConfigurationID));
+            pars.Add(new SqlParameter("generateddate", item.GeneratedDate));
+            pars.Add(new SqlParameter("startdate", item.StartDate));
+            pars.Add(new SqlParameter("enddate", item.EndDate));
+            pars.Add(new SqlParameter("isready", item.IsReady));
+            return pars;   
+        }
     }
 }
