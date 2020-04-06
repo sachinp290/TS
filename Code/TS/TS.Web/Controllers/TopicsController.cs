@@ -43,10 +43,14 @@ namespace TS.Web.Controllers
         {
             try
             {
-                var result = APIHelper<TopicViewModel>.Post( "topic", item);
-                if (result)
-                    return RedirectToAction("Index");
-                return View(item);
+                if (item.SubjectID != 0)
+                {
+                    var result = APIHelper<TopicViewModel>.Post("topic", item);
+                    if (result)
+                        return RedirectToAction("Index");
+                    return View(item);
+                }
+                return RedirectToAction("Create");
             }
             catch (Exception ea)
             {
