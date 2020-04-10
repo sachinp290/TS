@@ -11,28 +11,37 @@
 </p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
+        <th  class="">
+            <h4>
+                Topic Name
+            </h4>            
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SubjectName)
+        <th  class="">
+            <h4>
+                Subject Name
+            </h4>
         </th>
-        <th></th>
+        <th class=""> <h4> Choose </h4> </th>
     </tr>
-
-@foreach (var item in Model) {
+    @if (Model!=null)
+    {
+        foreach (var item in Model)
+        {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Name)
+            <label>@Html.DisplayFor(modelItem => item.Name)</label>
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.SubjectName)
+            <label>@Html.DisplayFor(modelItem => item.SubjectName)</label>
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            <label>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+             </label>
         </td>
     </tr>
-}
+        }
+    }
 
 </table>

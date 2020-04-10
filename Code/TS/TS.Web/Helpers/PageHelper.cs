@@ -8,9 +8,7 @@ namespace TS.Web.Helpers
     {
         public static SelectList GetSelectList(string Entity, string SelectedValue, bool AddSelectItem)
         {
-            var items = APIHelper<IDNamePair>.Get("idnamepair?tableName=" + Entity).ToList();
-            if (AddSelectItem)
-                items.Insert(0, new IDNamePair(0, "Select"));
+            var items = APIHelper<IDNamePair>.Get("idnamepair?tableName=" + Entity)?.ToList();            
             return new SelectList((items),
                                     "ID",
                                     "Name",
