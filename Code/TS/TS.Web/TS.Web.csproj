@@ -181,6 +181,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\QuestionViewModel.cs" />
     <Compile Include="Models\SubjectViewModel.cs" />
+    <Compile Include="Models\TestSubjectViewModel.cs" />
     <Compile Include="Models\TestViewModel.cs" />
     <Compile Include="Models\TopicViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -514,6 +515,8 @@
     <Content Include="Views\Tests\Create.cshtml" />
     <Content Include="Views\Tests\Edit.cshtml" />
     <Content Include="Views\Tests\Delete.cshtml" />
+    <Content Include="Views\Tests\TestSubjects.cshtml" />
+    <Content Include="Views\Tests\TestSubjectAdd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -109,5 +109,45 @@ namespace TS.Web.Controllers
                 throw ea;
             }
         }
+
+        public ActionResult TestSubjects(int id)
+        {
+            try
+            {
+                TestSubjectListViewModel item = new TestSubjectListViewModel();
+                item.TestID = id;
+                item.TestSubjects = APIHelper<TestSubjectViewModel>.Get("testsubject/" + id.ToString());
+                return View(item);
+            }
+            catch (Exception ea)
+            {
+                throw ea;
+            }
+        }
+
+        public ActionResult TestSubjectAdd(int TestID)
+        {
+            TestSubjectViewModel item = new TestSubjectViewModel();
+            item.TestID = TestID;
+            ViewBag.Subjects = PageHelper.GetSelectList("subject", "0", true);
+            return View(item);
+        }
+
+        [HttpPost]
+        public ActionResult TestSubjectAdd(int TestID, TestSubjectViewModel item)
+        {
+            try
+            {
+                var result = APIHelper<TestSubjectViewModel>.Post("testsubject", item);
+                if (result)
+                    return RedirectToAction("TestSubjects", new { id = TestID });
+
+                return View(item);
+            }
+            catch (Exception ea)
+            {
+                throw ea;
+            }
+        }
     }
 }

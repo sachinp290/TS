@@ -1,0 +1,52 @@
+﻿@model TS.Web.Models.TestSubjectListViewModel
+
+@{
+    ViewBag.Title = "TestSubjects";
+}
+
+<h2>TestSubjects</h2>
+
+<p>
+    @Html.ActionLink("Create New", "TestSubjectAdd", new { Model.TestID })
+</p>
+@Html.Display("Test ID: " + Model.TestID.ToString())
+@if (Model.TestSubjects != null)
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TestSubjects.First().TestID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TestSubjects.First().SubjectName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TestSubjects.First().Weightage)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.TestSubjects)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TestID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SubjectName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Weightage)
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
