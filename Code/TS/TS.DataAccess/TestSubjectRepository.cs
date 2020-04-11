@@ -9,6 +9,7 @@ namespace TS.DataAccess
     {
         List<TestSubject> Get(int testID);
         void Add(TestSubject item);
+        void Delete(int id);
     }
 
     public class TestSubjectRepository : ITestSubjectRepository
@@ -35,6 +36,14 @@ namespace TS.DataAccess
         public void Add(TestSubject item)
         {
             EnterpriseDAO.Update("AddTestSubject", System.Data.CommandType.StoredProcedure, DataHelper.GetParamsForTestSubject(item));
+        }
+
+
+        public void Delete(int id)
+        {
+            List<SqlParameter> pars = new List<SqlParameter>();
+            pars.Add(new SqlParameter("id", id));
+            EnterpriseDAO.Delete("DeleteTestSubject", System.Data.CommandType.StoredProcedure, pars);
         }
     }
 }

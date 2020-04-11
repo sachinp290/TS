@@ -8,6 +8,7 @@ namespace TS.Service
     {
         List<TestSubject> Get(int testID);
         void Add(TestSubject item);
+        void Delete(int id);
     }
     public class TestSubjectService : ITestSubjectService
     {
@@ -25,6 +26,12 @@ namespace TS.Service
         public void Add(TestSubject item)
         {
             repo.Add(item);
+        }
+
+
+        public void Delete(int id)
+        {
+            repo.Delete(id);
         }
     }
 }

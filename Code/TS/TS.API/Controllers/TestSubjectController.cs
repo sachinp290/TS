@@ -19,6 +19,16 @@ namespace TS.API.Controllers
             return Ok(items);
         }
 
+        // DELETE: api/Topic/5
+        public IHttpActionResult Delete(int id)
+        {
+            if (id <= 0)
+                return BadRequest("Not a valid id");
+            ITestSubjectService service = new TestSubjectService();
+            service.Delete(id);
+            return Ok();
+        }
+
         // POST: api/Topic
         public IHttpActionResult Post([FromBody]TestSubject value)
         {

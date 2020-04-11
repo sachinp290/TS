@@ -149,5 +149,21 @@ namespace TS.Web.Controllers
                 throw ea;
             }
         }
+
+        public ActionResult TestSubjectDelete(int id, int testID)
+        {
+            try
+            {
+                var result = APIHelper<TestViewModel>.Delete("testsubject", id);
+                if (result)
+                    return RedirectToAction("TestSubjects", new { id = testID });
+
+                return View();
+            }
+            catch (Exception ea)
+            {
+                throw ea;
+            }
+        }
     }
 }
