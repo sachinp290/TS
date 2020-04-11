@@ -19,6 +19,7 @@ GO
 -- =============================================
 Create PROCEDURE [dbo].[UpdateTestSeries]
 @id int = 0,
+@name nvarchar(100),
 @testconfigurationid int,
 @generateddate  datetime =null,
 @startdate datetime =null,
@@ -31,15 +32,16 @@ BEGIN
 
 	if @id = 0
 	BEGIN
-		Insert into TestSeries ([TestConfigurationId]
+		Insert into TestSeries (Name, [TestConfigurationId]
            ,[GeneratedDate]
            ,[StartDate]
-           ,[IsReady]) values(@testconfigurationid, @generateddate, @startdate, @isready);
+           ,[IsReady]) values(@name, @testconfigurationid, GETDATE(), @startdate, @isready);
 	END
 	ELSE
 	BEGIN
 		Update TestSeries
-		set [TestConfigurationId] = @testconfigurationid
+		set Name =@name, 
+		[TestConfigurationId] = @testconfigurationid
 			  ,[GeneratedDate] = @generateddate
 			  ,[StartDate] = @startdate
 			  ,[IsReady] = @isready

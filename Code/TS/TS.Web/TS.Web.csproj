@@ -167,6 +167,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\QuestionsController.cs" />
     <Compile Include="Controllers\SubjectsController.cs" />
+    <Compile Include="Controllers\TestSeriesesController.cs" />
     <Compile Include="Controllers\TestsController.cs" />
     <Compile Include="Controllers\TopicsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -182,6 +183,7 @@
     <Compile Include="Models\QuestionViewModel.cs" />
     <Compile Include="Models\SubjectViewModel.cs" />
     <Compile Include="Models\TestSubjectViewModel.cs" />
+    <Compile Include="Models\TestSeriesViewModel.cs" />
     <Compile Include="Models\TestViewModel.cs" />
     <Compile Include="Models\TopicViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -517,6 +519,10 @@
     <Content Include="Views\Tests\Delete.cshtml" />
     <Content Include="Views\Tests\TestSubjects.cshtml" />
     <Content Include="Views\Tests\TestSubjectAdd.cshtml" />
+    <Content Include="Views\TestSerieses\Index.cshtml" />
+    <Content Include="Views\TestSerieses\Create.cshtml" />
+    <Content Include="Views\TestSerieses\Edit.cshtml" />
+    <Content Include="Views\TestSerieses\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
