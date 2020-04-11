@@ -55,6 +55,7 @@
     <Compile Include="QuestionRepository.cs" />
     <Compile Include="SubjectRepository.cs" />
     <Compile Include="TestConfigurationRepository.cs" />
+    <Compile Include="TestSeriesRepository.cs" />
     <Compile Include="TestRepository.cs" />
     <Compile Include="TestSubjectRepository.cs" />
     <Compile Include="TopicRepository.cs" />

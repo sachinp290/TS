@@ -47,6 +47,7 @@
     <Compile Include="Test.cs" />
     <Compile Include="TestConfiguration.cs" />
     <Compile Include="TestQuestion.cs" />
+    <Compile Include="TestSeries.cs" />
     <Compile Include="TestSubject.cs" />
     <Compile Include="Topic.cs" />
   </ItemGroup>

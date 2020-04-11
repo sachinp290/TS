@@ -87,5 +87,17 @@ namespace TS.DataAccess
             pars.Add(new SqlParameter("weightage", item.Weightage));
             return pars;   
         }
+
+        internal static List<SqlParameter> GetParamsForTestSeries(TestSeries item)
+        {
+            List<SqlParameter> pars = new List<SqlParameter>();
+            pars.Add(new SqlParameter("id", item.ID));
+            pars.Add(new SqlParameter("name", item.Name));
+            pars.Add(new SqlParameter("testconfigurationid", item.TestConfigurationID));
+            pars.Add(new SqlParameter("generateddate", item.GeneratedDate));
+            pars.Add(new SqlParameter("startdate", item.StartDate));
+            pars.Add(new SqlParameter("isready", item.IsReady));
+            return pars;   
+        }
     }
 }
