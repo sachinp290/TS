@@ -8,6 +8,7 @@ using TS.Service;
 
 namespace TS.API.Controllers
 {
+    [Authorize]
     public class IDNamePairController : ApiController
     {
         // GET: api/Question

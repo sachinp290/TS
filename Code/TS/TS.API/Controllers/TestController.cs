@@ -4,6 +4,7 @@ using TS.Service;
 
 namespace TS.API.Controllers
 {
+    [Authorize]
     public class TestController : ApiController
     {
         public IHttpActionResult Get()

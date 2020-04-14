@@ -9,6 +9,7 @@ using TS.Service;
 
 namespace TS.API.Controllers
 {
+    [Authorize]
     public class TestConfigurationController : ApiController
     {
         // GET: api/TestConfiguration

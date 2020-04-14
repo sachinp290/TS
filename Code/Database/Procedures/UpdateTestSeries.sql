@@ -42,7 +42,6 @@ BEGIN
 		Update TestSeries
 		set Name =@name, 
 		[TestConfigurationId] = @testconfigurationid
-			  ,[GeneratedDate] = @generateddate
 			  ,[StartDate] = @startdate
 			  ,[IsReady] = @isready
 		where ID = @id

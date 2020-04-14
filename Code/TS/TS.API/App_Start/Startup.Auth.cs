@@ -10,6 +10,7 @@ using Microsoft.Owin.Security.OAuth;
 using Owin;
 using TS.API.Providers;
 using TS.API.Models;
+using System.Web.Http;
 
 namespace TS.API
 {
@@ -44,6 +45,11 @@ namespace TS.API
 
             // Enable the application to use bearer tokens to authenticate users
             app.UseOAuthBearerTokens(OAuthOptions);
+            
+            HttpConfiguration config = new HttpConfiguration();
+            WebApiConfig.Register(config);
+            app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
+            app.UseWebApi(config);
 
             // Uncomment the following lines to enable logging in with third party login providers
             //app.UseMicrosoftAccountAuthentication(
